@@ -1,9 +1,9 @@
-import React from 'react';
-
 const Home = () => {
   const item = 'Home Page';
   return (
-    <div>Home</div>
+    <div>
+      {item}
+    </div>
   );
 };
 
