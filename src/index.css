@@ -6,10 +6,10 @@
 
 @layer components {
   .nav__a {
-    @apply py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent hover:text-black hover:border-b-red-500;
+    @apply py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent;
   }
 
-  .active {
+  :is(.nav__a:hover, .active) {
     @apply text-black border-b-red-500;
   }
 }

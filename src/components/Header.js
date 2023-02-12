@@ -21,22 +21,19 @@ const Header = () => {
           <nav className="flex space-x-10">
             <NavLink
               to="/"
-              className="nav__a"
-              activeClassName="active"
+              className={({ isActive }) => (isActive ? 'nav__a active' : 'nav__a')}
             >
               Home
             </NavLink>
             <NavLink
               to="/offers"
-              className="nav__a"
-              activeClassName="active"
+              className={({ isActive }) => (isActive ? 'nav__a active' : 'nav__a')}
             >
               Offers
             </NavLink>
             <NavLink
               to="/sign-in"
-              className="nav__a"
-              activeClassName="active"
+              className={({ isActive }) => (isActive ? 'nav__a active' : 'nav__a')}
             >
               {(!isLinkActive) ? (
                 'Profile'
