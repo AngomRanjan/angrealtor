@@ -1,9 +1,8 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import '../index.css';
 
 const Header = () => {
-  const location = useLocation();
-  const isLinkActive = (link) => (link === location.pathname);
+  const isLoggedIn = false ? 'Profile' : 'Sign-In';
 
   return (
     <div className="bg-white border-b shadow-sm sticky top-0 z-40">
@@ -21,25 +20,21 @@ const Header = () => {
           <nav className="flex space-x-10">
             <NavLink
               to="/"
-              className={({ isActive }) => (isActive ? 'nav__a active' : 'nav__a')}
+              className="nav__a"
             >
               Home
             </NavLink>
             <NavLink
               to="/offers"
-              className={({ isActive }) => (isActive ? 'nav__a active' : 'nav__a')}
+              className="nav__a"
             >
               Offers
             </NavLink>
             <NavLink
-              to="/sign-in"
-              className={({ isActive }) => (isActive ? 'nav__a active' : 'nav__a')}
+              to={isLoggedIn.toLowerCase()}
+              className="nav__a"
             >
-              {(!isLinkActive) ? (
-                'Profile'
-              ) : (
-                'Sign-in'
-              )}
+              {isLoggedIn}
             </NavLink>
           </nav>
         </div>
