@@ -1,10 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
+import { auth } from '../api/firebase';
 
 const Profile = () => {
-  const item = 'Profile Page';
+  const navigate = useNavigate();
+  const handleClick = () => {
+    auth.signOut();
+    navigate('/');
+  };
+
   return (
     <div>
-      {item}
+      <button type="button" onClick={handleClick}>sign out</button>
     </div>
   );
 };
