@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Restricted from './components/Restricted';
 import Root from './layouts/Root';
 import ForgotPwd from './pages/ForgotPwd';
 import Home from './pages/Home';
@@ -19,10 +20,6 @@ function App() {
           element: <Home />,
         },
         {
-          path: 'profile',
-          element: <Profile />,
-        },
-        {
           path: 'sign-in',
           element: <SignIn />,
         },
@@ -37,6 +34,15 @@ function App() {
         {
           path: 'forgot-password',
           element: <ForgotPwd />,
+        },
+        {
+          element: <Restricted />,
+          children: [
+            {
+              path: 'profile',
+              element: <Profile />,
+            },
+          ],
         },
       ],
     },
