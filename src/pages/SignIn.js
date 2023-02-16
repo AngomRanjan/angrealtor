@@ -1,24 +1,53 @@
 import { useState } from 'react';
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { toast } from 'react-toastify';
+import { auth } from '../api/firebase';
 import GoogleAuth from '../components/GoogleAuth';
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const onSubmit = (e) => {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+  const { email, password } = formData;
+  function handleChange(e) {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }));
+  }
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('submit');
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
+      if (userCredential.user) {
+        navigate('/');
+      }
+    } catch (error) {
+      toast.error('Bad user credentials');
+    }
   };
   return (
     <section>
       <h1 className="text-3xl text-center mt-6 font-bold">Sign In</h1>
       <div className="flex justify-center flex-wrap items-center px-6 py-12 max-w-6xl mx-auto">
         <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-20">
-          <form onSubmit={onSubmit}>
+          <form onSubmit={handleSubmit}>
             <input
               type="email"
               id="email"
+              value={email}
+              onChange={handleChange}
               placeholder="Email address"
+              required
               className="mb-6 w-full px-4 py-2 text-xl text-gray-700 bg-white border-[1px] border-gray-300 rounded transition ease-in-out"
             />
             <div className="relative mb-6">
@@ -26,6 +55,10 @@ const SignIn = () => {
                 type={showPassword ? 'text' : 'password'}
                 id="password"
                 placeholder="Password"
+                value={password}
+                onChange={handleChange}
+                minLength={8}
+                required
                 className="w-full px-4 py-2 text-xl text-gray-700 bg-white border-[1px] border-gray-300 rounded transition ease-in-out"
               />
               {showPassword ? (
