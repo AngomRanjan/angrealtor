@@ -12,6 +12,7 @@ export default function useAuth() {
       }
       setIsChecking(false);
     });
+    console.log(isLoggedIn);
   }, []);
   return { isLoggedIn, isChecking };
 }
