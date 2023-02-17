@@ -1,8 +1,20 @@
+import { onAuthStateChanged } from 'firebase/auth';
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { auth } from '../api/firebase';
 import '../index.css';
 
 const Header = () => {
-  const isLoggedIn = false ? 'Profile' : 'Sign-In';
+  const [linkTo, setLinkTo] = useState('Sign-in');
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setLinkTo('Profile');
+      } else {
+        setLinkTo('Sign-in');
+      }
+    });
+  }, [auth]);
 
   return (
     <div className="bg-white border-b shadow-sm sticky top-0 z-40">
@@ -31,10 +43,10 @@ const Header = () => {
               Offers
             </NavLink>
             <NavLink
-              to={isLoggedIn.toLowerCase()}
+              to={linkTo.toLowerCase()}
               className="nav__a"
             >
-              {isLoggedIn}
+              {linkTo}
             </NavLink>
           </nav>
         </div>
