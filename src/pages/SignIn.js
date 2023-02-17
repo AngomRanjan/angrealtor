@@ -29,6 +29,7 @@ const SignIn = () => {
         password,
       );
       if (userCredential.user) {
+        toast.success('You have Signed in successfully');
         navigate('/');
       }
     } catch (error) {
