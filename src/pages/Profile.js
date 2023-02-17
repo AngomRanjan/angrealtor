@@ -1,10 +1,18 @@
-import React from 'react';
+import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
+import { auth } from '../api/firebase';
 
 const Profile = () => {
-  const item = 'Profile Page';
+  const navigate = useNavigate();
+  const handleClick = () => {
+    auth.signOut();
+    toast.success('You have Signed out successfully');
+    navigate('/');
+  };
+
   return (
     <div>
-      {item}
+      <button type="button" onClick={handleClick}>sign out</button>
     </div>
   );
 };

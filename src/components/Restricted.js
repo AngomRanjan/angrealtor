@@ -1,13 +1,16 @@
-import React from 'react';
 import { Outlet } from 'react-router';
-// import useAuth from '../hooks/useAuth';
+import useAuth from '../hooks/useAuth';
 import SignIn from '../pages/SignIn';
+import Spinner from './Spinner';
+
+/* eslint-disable no-nested-ternary */
 
 const Restricted = () => {
-  const isLoggedIn = false;
+  const { isLoggedIn, isChecking } = useAuth();
   return (
     <>
-      {isLoggedIn ? <Outlet /> : <SignIn />}
+      {isChecking ? <Spinner />
+        : isLoggedIn ? <Outlet /> : <SignIn />}
     </>
   );
 };
