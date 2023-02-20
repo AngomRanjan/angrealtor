@@ -7,6 +7,8 @@ import Offers from './pages/Offers';
 import Profile from './pages/Profile';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import Listing from './pages/Listing';
+import CreateListing from './pages/CreateListing';
 
 function App() {
   const router = createBrowserRouter([
@@ -31,6 +33,11 @@ function App() {
           path: 'offers',
           element: <Offers />,
         },
+
+        {
+          path: 'listing',
+          element: <Listing />,
+        },
         {
           path: 'forgot-password',
           element: <ForgotPwd />,
@@ -41,6 +48,11 @@ function App() {
             {
               path: 'profile',
               element: <Profile />,
+            },
+
+            {
+              path: 'create-listing',
+              element: <CreateListing />,
             },
           ],
         },
