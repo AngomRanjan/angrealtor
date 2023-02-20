@@ -4,7 +4,7 @@ const CreateListing = () => {
     <div>
       {temp}
     </div>
-  )
-}
+  );
+};
 
 export default CreateListing;
