@@ -10,7 +10,8 @@ const Profile = () => {
   const navigate = useNavigate();
   const [editMode, setEditMode] = useState(false);
   const [isChanged, setIsChanged] = useState(false);
-  const [listings, setListings] = useState(null);
+  const [listings, setListings] = useState([{ id: 1 }, { id: 2 }, { id: 3 },
+    { id: 4 }, { id: 5 }, { id: 6 }]);
   const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
     name: auth.currentUser.displayName,
@@ -98,18 +99,14 @@ const Profile = () => {
         </div>
       </section>
       <div className="max-w-6xl px-3 mt-6 mx-auto">
-        {!loading && listings.length > 0 && (
-          <>
-            <h2 className="text-2xl text-center font-semibold mb-6">
-              My Listings
-            </h2>
-            <ul className="sm:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-              {listings.map((listing) => (
-                <ListingItem key={listing.id} />
-              ))}
-            </ul>
-          </>
-        )}
+        <h2 className="text-2xl text-center font-semibold mb-6">
+          My Listings
+        </h2>
+        <ul className="justify-center flex flex-wrap">
+          {listings.map((listing) => (
+            <ListingItem key={listing.id} />
+          ))}
+        </ul>
       </div>
     </>
   );
