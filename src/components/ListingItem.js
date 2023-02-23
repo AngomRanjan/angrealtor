@@ -1,19 +1,20 @@
-import Moment from "react-moment";
-import { Link } from "react-router-dom";
-import { MdLocationOn } from "react-icons/md";
-import { FaTrash } from "react-icons/fa";
-import { MdEdit } from "react-icons/md";
+import Moment from 'react-moment';
+import { Link } from 'react-router-dom';
+import { MdLocationOn, MdEdit } from 'react-icons/md';
+import { FaTrash } from 'react-icons/fa';
+
 const ListingItem = () => {
   const listing = {};
   const id = 1;
   const onEdit = '';
-  const onDelete ='';
+  const onDelete = '';
   return (
     <li className="relative bg-white flex flex-col justify-between items-center shadow-md hover:shadow-xl rounded-md overflow-hidden transition-shadow duration-150 m-[10px]">
       <Link className="contents" to={`/category/${listing.type}/${id}`}>
         <img
           className="h-[170px] w-full object-cover hover:scale-105 transition-scale duration-200 ease-in"
           loading="lazy"
+          alt="of"
           src={listing.imgUrls[0]}
         />
         <Moment
@@ -34,24 +35,24 @@ const ListingItem = () => {
             $
             {listing.offer
               ? listing.discountedPrice
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
               : listing.regularPrice
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-            {listing.type === "rent" && " / month"}
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+            {listing.type === 'rent' && ' / month'}
           </p>
           <div className="flex items-center mt-[10px] space-x-3">
             <div className="flex items-center space-x-1">
               <p className="font-bold text-xs">
-                {listing.bedrooms > 1 ? `${listing.bedrooms} Beds` : "1 Bed"}
+                {listing.bedrooms > 1 ? `${listing.bedrooms} Beds` : '1 Bed'}
               </p>
             </div>
             <div className="flex items-center space-x-1">
               <p className="font-bold text-xs">
                 {listing.bathrooms > 1
                   ? `${listing.bathrooms} Baths`
-                  : "1 Bath"}
+                  : '1 Bath'}
               </p>
             </div>
           </div>
@@ -71,6 +72,6 @@ const ListingItem = () => {
       )}
     </li>
   );
-}
+};
 
 export default ListingItem;

@@ -14,7 +14,7 @@ const Header = () => {
         setLinkTo('Sign-in');
       }
     });
-  }, [auth]);
+  }, []);
 
   return (
     <div className="bg-white border-b shadow-sm sticky top-0 z-40">
